@@ -31,7 +31,13 @@ var max = 7;
     console.log(valueArray[i]);
    }
  };
- //6)
+ //11)
+ var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
+ for (var i = 0; i < valueArray.length; i++){
+  if( valueArray[i] % 2 === 0){
+  console.log(valueArray[i])
+  }
+};
 
 
  
