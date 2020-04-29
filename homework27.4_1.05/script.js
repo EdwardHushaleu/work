@@ -37,7 +37,7 @@ for (var i=0; i < cityArray.length; i++){
   if (cityArray[i].length > 5){
     console.log(cityArray[i].length); 
   }
-}
+};
  //11)
  var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
  for (var i = 0; i < valueArray.length; i++){
@@ -49,7 +49,15 @@ for (var i=0; i < cityArray.length; i++){
 };
 //10)
 
-
+var cityArray = ['Homuel', 'Hrodno', 'Vitebsuk', 'Mogilev', 'Breust', 'Minsk'];
+var result = [];
+for( var i = 0; i < cityArray.length; i++){
+   var cityWithU = cityArray[i];
+  if (cityWithU.includes('u')) {
+    result.push(cityWithU);
+  }
+};
+console.log(result);
 
 
  
