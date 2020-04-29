@@ -31,6 +31,13 @@ var max = 7;
     console.log(valueArray[i]);
    }
  };
+ //6
+ var cityArray = ['Homell', 'Hrodno', 5, 'Vitebsk', 'Mogi', 4 , 'Brest', 'Minsk'];
+for (var i=0; i < cityArray.length; i++){
+  if (cityArray[i].length > 5){
+    console.log(cityArray[i].length); 
+  }
+}
  //11)
  var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
  for (var i = 0; i < valueArray.length; i++){
@@ -40,6 +47,9 @@ var max = 7;
     console.log('odd');
   }
 };
+//10)
+
+
 
 
  
