@@ -58,14 +58,11 @@ for (var i=0; i < cityArray.length; i++){
 
 //10)Перебираем массив и выводим только те элементы, в которых содержится буква 'u'
 var cityArray = ['Homuel', 'Hrodno', 'Vitebsuk', 'Mogilev', 'Breust', 'Minsk'];
-var result = [];
 for( var i = 0; i < cityArray.length; i++){
-   var cityWithU = cityArray[i];
-  if (cityWithU.includes('u')) {
-    result.push(cityWithU);
+  if (cityArray[i].indexOf('u') > 1) {
+    console.log(cityArray[i]);
   }
 };
-console.log(result);
 
 
  
