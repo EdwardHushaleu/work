@@ -45,6 +45,23 @@ for (var i=0; i < cityArray.length; i++){
   }
 };
 
+//7 Перебираем массив и выводим сообщение на каждую итерацию.
+var array = [2, 'text', 3, false, 'cat', true];
+for(var i = 0; i < array.length; i++){
+  var q = array[i];
+  if(typeof q === 'number'){
+    console.log('This is a number');
+  }
+  
+  else if(typeof q === 'string'){
+    console.log('This is a string');
+  }
+  
+  else {
+    console.log('This is some type');
+  }
+};
+
 //8)Задача пробежаться циклом по массиву и вывести message тех объектов, у которых isHidden не true
 var randomArray = [
   {
