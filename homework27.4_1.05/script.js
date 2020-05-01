@@ -41,7 +41,6 @@ for (var i = 0; i < valueArray.length; i++ ){
 for (var i=0; i < cityArray.length; i++){
   if (typeof cityArray === 'string' && cityArray[i].length > 5){
     console.log(cityArray[i]);
-    console.log(typeof(cityArray[i])); 
   }
 };
 
@@ -86,23 +85,38 @@ var randomArray = [
       console.log(randomArray[i].message);
     }
   };
- 
-//11)Перебираем массив и выводим в консоль сообщение на каждую итерацию о том чётное перед нами число, либо нечётное
- var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
- for (var i = 0; i < valueArray.length; i++){
-  if( valueArray[i] % 2 === 0){
-  console.log('Even');
-  } else{
-    console.log('odd');
-  }
-};
 
+  //9
+  var array = [
+    {
+      title:'hello man'
+    },
+    {
+      title:'city'
+    }
+  ];
+  
+  for (var i = 0; i < array.length; i++){
+    array[i].titleUppercased = array[i].title.toUpperCase();
+  }
+  console.log(array);
+ 
 //10)Перебираем массив и выводим только те элементы, в которых содержится буква 'u'
 var cityArray = ['Homuel', 'Hrodno', 'Vitebsuk', 'Mogilev', 'Breust', 'Minsk'];
 for( var i = 0; i < cityArray.length; i++){
   if (cityArray[i].indexOf('u') > -1) {
     console.log(cityArray[i]);
   }
+};
+
+//11)Перебираем массив и выводим в консоль сообщение на каждую итерацию о том чётное перед нами число, либо нечётное
+var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
+for (var i = 0; i < valueArray.length; i++){
+ if( valueArray[i] % 2 === 0){
+ console.log('Even');
+ } else{
+   console.log('odd');
+ }
 };
 
 
