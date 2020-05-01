@@ -31,20 +31,44 @@ var cityArray = ['Homel', 'Hrodno', 'Vitebsk', 'Hrodno', 'Mogilev', 'Brest', 'Mi
 //5)  Выводим в консоль все числовые значения больше 7.
 var valueArray = [ 25, 1, 34, 'Homel', 2, 3, 51, 8];
 for (var i = 0; i < valueArray.length; i++ ){
-  if(valueArray[i] > 7){
+  if(typeof valueArray[i] === 'number' && valueArray[i] > 7){
     console.log(valueArray[i]);
-    console.log(typeof(valueArray[i]))
   }
 };
 
  //6)Выводим в консоль все строковые значения массива, длина которых больше 5.
  var cityArray = ['Homell', 'Hrodno', 5, 'Vitebsk', 'Mogi', 4 , 'Brest', 'Minsk'];
 for (var i=0; i < cityArray.length; i++){
-  if (cityArray[i].length > 5){
+  if (typeof cityArray === 'string' && cityArray[i].length > 5){
     console.log(cityArray[i]);
     console.log(typeof(cityArray[i])); 
   }
 };
+
+//8)Задача пробежаться циклом по массиву и вывести message тех объектов, у которых isHidden не true
+var randomArray = [
+  {
+    id: 6,
+    message: 'Test',
+    isHidden: true
+  },
+  {
+    id: 4,
+    message: 'tost',
+    isHidden: false
+  },
+  {
+    id: 7,
+    message: 'post',
+    isHidden: true
+  }
+  ];
+  
+  for (var i = 0; i < randomArray.length; i++){
+    if(randomArray[i].isHidden === false){
+      console.log(randomArray[i].message);
+    }
+  };
  
 //11)Перебираем массив и выводим в консоль сообщение на каждую итерацию о том чётное перед нами число, либо нечётное
  var valueArray = [ 25, 1, 34, 2, 3, 51, 8, 100];
@@ -59,7 +83,7 @@ for (var i=0; i < cityArray.length; i++){
 //10)Перебираем массив и выводим только те элементы, в которых содержится буква 'u'
 var cityArray = ['Homuel', 'Hrodno', 'Vitebsuk', 'Mogilev', 'Breust', 'Minsk'];
 for( var i = 0; i < cityArray.length; i++){
-  if (cityArray[i].indexOf('u') > 1) {
+  if (cityArray[i].indexOf('u') > -1) {
     console.log(cityArray[i]);
   }
 };
