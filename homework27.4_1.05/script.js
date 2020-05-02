@@ -18,14 +18,14 @@ var cityArray = ['Homel', 'Hrodno', 'Vitebsk', 'Mogilev', 'Brest', 'Minsk'];
 cityArray.splice(2,1);
 console.log(cityArray);                                                              
 
-// 4)Удалили повторяющиеся значения из массива---????&????????
+// 4)Удалили повторяющиеся значения из массива
 var cityArray = ['Homel', 'Hrodno', 'Vitebsk', 'Hrodno', 'Mogilev', 'Brest', 'Minsk', 'Minsk'];
   result = [];
   for (var i = 0; i < cityArray.length; i++) {
-      if(cityArray[i + 1] !== cityArray[i]){
+      if(result.indexOf(cityArray[i]) < 0){
         result.push(cityArray[i])
       }
-    }
+    };
   console.log(result);
 
 //5)  Выводим в консоль все числовые значения больше 7.
