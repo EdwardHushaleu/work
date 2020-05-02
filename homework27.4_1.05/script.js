@@ -22,7 +22,7 @@ console.log(cityArray);
 var cityArray = ['Homel', 'Hrodno', 'Vitebsk', 'Hrodno', 'Mogilev', 'Brest', 'Minsk', 'Minsk'];
   result = [];
   for (var i = 0; i < cityArray.length; i++) {
-      if(cityArray[i + 1] != cityArray[i]){
+      if(cityArray[i + 1] !== cityArray[i]){
         result.push(cityArray[i])
       }
     }
@@ -119,5 +119,15 @@ for (var i = 0; i < valueArray.length; i++){
  }
 };
 
+//12)
+var calc = function(func){
+  var arr =[];
+  func(10);
+  arr.push(func(111));
+  console.log(arr);
+};
 
+  calc(function(num){
+ return num * num
+ });
  
