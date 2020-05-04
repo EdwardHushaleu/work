@@ -32,15 +32,15 @@ var cityArray = ['Homel', 'Hrodno', 'Vitebsk', 'Hrodno', 'Mogilev', 'Brest', 'Mi
 var valueArray = [ 25, 1, 34, 'Homel', 2, 3, 51, 8];
 for (var i = 0; i < valueArray.length; i++ ){
   if(typeof valueArray[i] === 'number' && valueArray[i] > 7){
-    console.log(valueArray[i]);
+    console.log(i + ' - ' + valueArray[i]);
   }
 };
 
  //6)Выводим в консоль все строковые значения массива, длина которых больше 5.
  var cityArray = ['Homell', 'Hrodno', 5, 'Vitebsk', 'Mogi', 4 , 'Brest', 'Minsk'];
 for (var i=0; i < cityArray.length; i++){
-  if (typeof cityArray === 'string' && cityArray[i].length > 5){
-    console.log(cityArray[i]);
+  if (typeof cityArray[i] === 'string' && cityArray[i].length > 5){
+    console.log(i + ' - ' + cityArray[i]);
   }
 };
 
@@ -124,10 +124,11 @@ var calc = function(func){
   var arr =[];
   func(10);
   arr.push(func(111));
-  console.log(arr);
+  return arr;
 };
-
-  calc(function(num){
+    
+console.log( calc(function(num){
  return num * num
- });
+ }));
+ 
  
