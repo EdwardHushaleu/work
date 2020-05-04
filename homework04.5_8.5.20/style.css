@@ -1,0 +1,47 @@
+
+
+body{
+  background-color: #e9b000;
+  font-family: sans-serif;
+  font-style: normal;
+  padding: 40px 0;
+}
+
+
+.b-tasks{
+  max-width: 500px;
+  margin: 0 auto;
+  
+}
+
+.l-tasks{
+  background-color: #9b2837;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: black 0px 0px 9px 0px;
+}
+
+.l-tasks_item{
+  border-bottom: 2px dashed;
+  display: block;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.l-task__inner{
+  margin-bottom: 15px;
+  font-style: italic;
+  color: white;
+  font-weight: 700;
+}
+
+.l-tasks__btn{
+  background-color: #c4c4c4;
+  padding: 10px;
+  border-radius: 3px;
+  color: #9b2837;
+  font-weight: 800;
+  border: solid 2px white;
+  
+}
