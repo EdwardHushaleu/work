@@ -1,12 +1,19 @@
 
 
-body{
+
+._color-scheme-light {
   background-color: #e9b000;
   font-family: sans-serif;
   font-style: normal;
   padding: 40px 0;
 }
 
+body {
+  background-color: #f9f9f9 ;
+  font-family: sans-serif;
+  font-style: normal;
+  padding: 40px 0;
+}
 
 
 .b-tasks{
@@ -17,6 +24,13 @@ body{
 
 .l-tasks{
   background-color: #9b2837;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: black 0px 0px 9px 0px;
+}
+
+ul{
+  background-color: #d3af57;
   padding: 15px;
   border-radius: 3px;
   box-shadow: black 0px 0px 9px 0px;
@@ -35,6 +49,15 @@ body{
   font-style: italic;
   color: white;
   font-weight: 700;
+}
+button{
+  background-color: #555354;
+  padding: 10px;
+  border-radius: 3px;
+  color: white;
+  font-weight: 800;
+  border: solid 2px white;
+  
 }
 
 .l-tasks__btn{
