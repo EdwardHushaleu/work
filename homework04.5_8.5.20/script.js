@@ -4,9 +4,20 @@ var fun = function(num){
     if(typeof num === 'number' && num % 2 === 0){
         textItem[0].innerText = 'Number'+ ' ' + num + ' ' +'is even'
     }
-    else (textItem[0].innerText = 'Number'+ ' ' + num + ' ' +'is odd')
-      if( typeof num === 'undefined'){
-        textItem[0].innerText = 'This is not a number'
-      }  
+    else { 
+        textItem[0].innerText = 'Number'+ ' ' + num + ' ' +'is odd';
+} 
 };
-fun(8);
+fun(6);
+
+var body = document.body
+var buttonToggle = document.querySelectorAll('._toggle')[0];
+var buttonRemuve = document.querySelectorAll('._remove')[0];
+var ul = document.querySelector('.l-tasks');
+var click = function (){
+ body.classList.toggle('_color-scheme-light');
+ ul.classList.toggle('l-tasks');
+ buttonToggle.classList.toggle('l-tasks__btn')
+ buttonRemuve.classList.toggle('l-tasks__btn')
+};
+buttonToggle.addEventListener('click', click);
