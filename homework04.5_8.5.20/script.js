@@ -24,7 +24,7 @@ var removeSpanHandler = function(){
     if(body.classList.contains('_color-scheme-light')){
         arraySpan[0].remove();
     } else {
-        arraySpan[arraySpan.length-1].remove()
+        arraySpan[arraySpan.length-1].remove();
     };
 
     buttonRemove.removeEventListener('click', removeSpanHandler);    
