@@ -1,5 +1,56 @@
+body {
+  background-color: #f9f9f9;
+  font-family: sans-serif;
+  font-style: normal;
+  padding: 40px 0;
+}
 
+.b-tasks{
+  max-width: 500px;
+  margin: 0 auto;
+}
 
+.l-tasks{
+  background-color: #d3af57;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: black 0 0 9px 0;
+}
+
+.l-tasks_item{
+  border-bottom: 2px dashed;
+  display: block;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  color: #555354;
+}
+
+.l-task__inner{
+  margin-bottom: 15px;
+  font-style: italic;
+  color: #555354;
+  font-weight: 700;
+}
+
+.l-tasks__btn._toggle{
+  background-color: #555354;
+  padding: 10px;
+  border-radius: 3px;
+  color: #f9f9f9;
+  font-weight: 800;
+  border: solid 2px white;
+}
+
+.l-tasks__btn._remove{
+  background-color: #555354;
+  padding: 10px;
+  border-radius: 3px;
+  color: #f9f9f9;
+  font-weight: 800;
+  border: solid 2px white;
+}
+
+/* смена цвета */
 
 ._color-scheme-light {
   background-color: #e9b000;
@@ -8,64 +59,25 @@
   padding: 40px 0;
 }
 
-body {
-  background-color: #f9f9f9 ;
-  font-family: sans-serif;
-  font-style: normal;
-  padding: 40px 0;
+._color-scheme-light .l-tasks_item{
+  color: #f9f9f9;
 }
 
-
-.b-tasks{
-  max-width: 500px;
-  margin: 0 auto;
+._color-scheme-light .l-task__inner{
+  color: #f9f9f9;
   
 }
 
-.l-tasks{
+._color-scheme-light .l-tasks{
   background-color: #9b2837;
-  padding: 15px;
-  border-radius: 3px;
-  box-shadow: black 0px 0px 9px 0px;
 }
 
-ul{
-  background-color: #d3af57;
-  padding: 15px;
-  border-radius: 3px;
-  box-shadow: black 0px 0px 9px 0px;
-}
-
-.l-tasks_item{
-  border-bottom: 2px dashed;
-  display: block;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  color: white;
-}
-
-.l-task__inner{
-  margin-bottom: 15px;
-  font-style: italic;
-  color: white;
-  font-weight: 700;
-}
-button{
-  background-color: #555354;
-  padding: 10px;
-  border-radius: 3px;
-  color: white;
-  font-weight: 800;
-  border: solid 2px white;
-  
-}
-
-.l-tasks__btn{
+._color-scheme-light .l-tasks__btn._toggle{
   background-color: #c4c4c4;
-  padding: 10px;
-  border-radius: 3px;
   color: #9b2837;
-  font-weight: 800;
-  border: solid 2px white;
-  
+}
+
+._color-scheme-light .l-tasks__btn._remove{
+  background-color: #c4c4c4;
+  color: #9b2837;
 }
