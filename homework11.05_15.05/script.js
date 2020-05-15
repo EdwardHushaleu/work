@@ -5,15 +5,28 @@ bUnivers.addEventListener('click', function(e) {
   
     var x = e.offsetX - bUniversPlanet.offsetWidth / 2;
     var y = e.offsetY - bUniversPlanet.offsetHeight / 2;
+   
     
     if (e.target === bUniversPlanet ) {
         return bUniversPlanet.style.display = 'none';
     } else if (bUniversPlanet.style.display === 'none'){
         return bUniversPlanet.style.display = '';   
-    }
+    };
 
-    bUniversPlanet.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    if (x < 0) {
+        x = 0; 
+    } else if (x + bUniversPlanet.offsetWidth > bUnivers.offsetWidth) {
+        x = bUnivers.offsetWidth - bUniversPlanet.offsetWidth;  
+    };
 
+    if (y < 0) {
+        y = 0;
+    } else if (y + bUniversPlanet.offsetHeighths > bUnivers.offsetHeight) {
+        y = bUnivers.offsetHeight - bUniversPlanet.offsetHeight;
+    };
+    
+ bUniversPlanet.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
+    console.log(x, y);
 });
 
