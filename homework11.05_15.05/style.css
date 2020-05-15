@@ -18,5 +18,5 @@ body{
   top: 0;
   left: 0;
   transition: transform  1s  ease-in-out;
-  transform: translate(0,0);
+  transform: translate(360px,200px); 
 }
