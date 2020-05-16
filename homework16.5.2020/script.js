@@ -14,9 +14,9 @@ form.addEventListener('submit', function(e){
 
   if(!valueImail || !valuePassword){
   alert('Дружище, поля-то должны быть заполнены');
-} else if (valuePassword && valuePassword.length < 10){
+  } else if (valuePassword && valuePassword.length < 10){
   alert('Капец пароль маленький, нужно больше циферок или букавок');
-};
+  };
 });
 
 body.addEventListener('click', function(e){
