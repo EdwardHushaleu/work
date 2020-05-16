@@ -7,7 +7,7 @@ button.addEventListener('click', function(e){
 });
 
 form.addEventListener('submit', function(e){
-e.preventDefault();
+  e.preventDefault();
 
   var valueImail = e.target.elements.email.value;
   var valuePassword = e.target.elements.password.value
@@ -21,13 +21,13 @@ e.preventDefault();
 
 body.addEventListener('click', function(e){
   e.stopImmediatePropagation()
-  console.log("BODY_1");
+  console.log('BODY_1');
 });
 
 body.addEventListener('click', function(){
-  console.log("BODY_2");
+  console.log('BODY_2');
 });
 
 body.addEventListener('click', function(){
-  console.log("BODY_3");
+  console.log('BODY_3');
 });
