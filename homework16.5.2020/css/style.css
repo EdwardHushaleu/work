@@ -1,0 +1,38 @@
+body {
+	height: auto;
+	padding: 50px;
+	font-family: sans-serif;
+}
+
+.f-default {
+	padding: 10px;
+	border: 2px solid #000;
+}
+
+.f-default__field {
+	display: block;
+	padding: 0 10px;
+	height: 30px;
+	background-color: #fff;
+	border: 1px solid #000;
+}
+
+.f-default__field + .f-default__field {
+	margin-top: 20px;
+}
+
+.f-default__btn {
+	margin-top: 30px;
+	padding: 10px 15px;
+	border: 1px solid #000;
+}
+
+.f-default__btn:hover {
+	color: #fff;
+	background-color: #000;
+}
+
+.f-default__btn:active {
+	color: #000;
+	background-color: #fff;
+}
