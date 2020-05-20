@@ -1,6 +1,6 @@
 var body = document.body;
 var buttonColor = document.querySelector('button');
-var color = ['#ffffff'];
+var color = [];
 var obj = {
   field1: 'Hello',
   field2: true,
