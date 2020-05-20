@@ -10,14 +10,15 @@ var obj = {
 };
 
 buttonColor.addEventListener('click', function() {
+
+  var randomColors = Math.floor(Math.random() * color.length-1);
+  
   for(var prop in obj){
     if(Array.isArray(obj[prop])){
       color.push(...obj[prop]);
-      console.log(color);
-    }
-  }
-
-})
-console.log(color);
-
+    };
+  };
+  
+  body.style.backgroundColor = color[randomColors];
+});
 
