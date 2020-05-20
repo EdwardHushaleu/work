@@ -22,3 +22,11 @@ buttonColor.addEventListener('click', function() {
   body.style.backgroundColor = color[randomColors];
 });
 
+document.addEventListener('keydown', function(e){
+  
+  if(e.keyCode === 39){
+    
+  }
+
+})
+
