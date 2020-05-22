@@ -32,7 +32,7 @@ body.addEventListener('keyup', function(e){
   var isLeftKey = e.keyCode === 37;
   
   if(isRightKey){
-    if(counter === colors.length){
+    if(counter === colors.length-1){
       counter = 0;
     } else if (counter >= 0) {
       counter++;
@@ -45,7 +45,7 @@ body.addEventListener('keyup', function(e){
   
    if(isLeftKey){
     if(counter === 0){
-      counter = colors.length;
+      counter = colors.length-1;
     } else if (counter <= colors.length) {
       counter--;
     } else {
