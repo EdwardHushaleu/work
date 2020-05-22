@@ -41,9 +41,9 @@ body.addEventListener('keyup', function(e){
     }
 
     body.style.backgroundColor = colors[counter];
-  }; 
+  } 
   
-   if(isLeftKey){
+  else if(isLeftKey){
     if(counter === 0){
       counter = colors.length-1;
     } else if (counter <= colors.length) {
