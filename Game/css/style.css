@@ -1,0 +1,25 @@
+body {
+	height: auto;
+	padding: 50px;
+	font-family: sans-serif;
+	background: #1e4542;
+}
+
+.b-shooter{
+	background-image: url(../img/background.jpg);
+	width: 850px;
+	height: 550px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.b-shooter__aim{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+  	left: 0;
+  	transition: transform  0.2s  ease-in-out;
+	transform: translate(360px,200px);
+	pointer-events: none;  
+}
