@@ -35,12 +35,13 @@ function  other(){
     var array = [];
     
     function inner(arg){
-        array.push(arg)
-        console.log(array)
-       
+
         if(array.length === 5){
             array.length = 0;
         };
+
+        array.push(arg)
+        console.log(array)
     }
     return inner
 }
@@ -63,8 +64,8 @@ var button = document.querySelector('button');
   button.addEventListener('click', (function(){
     var counter = 0
     
-    function buildClick(){
-      button.innerText = 'Ты нажал: ' + ++counter;
+    function buildClick(e){
+      e.currentTarget.innerText = 'Ты нажал: ' + ++counter;
       
     }
     return buildClick
