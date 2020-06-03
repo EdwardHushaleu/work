@@ -13,10 +13,50 @@ function func(name) {
 func('Edik');
 func();
 
+//2)
+
+const arr = [
+  {
+    city: 'New York',
+    country: 'USA'
+  }, 
+  {
+    city: 'Paris',
+    country: 'France'
+  },
+  {
+    city: 'San Francisco',
+    country: 'USA'
+  },
+  {
+    city: 'Minsk',
+    country: 'Belarus'
+  }
+];
+
+let newObj ={
+  usa: [],
+  europe: []
+};
+
+arr.reduce(function(acc, item){
+
+  if(item.country === 'USA'){
+    acc.usa.push(item.city)
+  } else {
+    acc.europe.push(item.city)
+  }
+
+  return acc;
+
+}, newObj)
+
+console.log(newObj)
+
 //3)
-let arr = [2, 5, 6, 7, 381];
-console.log('Минимальное значение: ' + Math.min.apply(null, arr));
-console.log(`Максимальное значение: ${Math.max(...arr)}`);
+let arrNum = [2, 5, 6, 7, 381];
+console.log('Минимальное значение: ' + Math.min.apply(null, arrNum));
+console.log(`Максимальное значение: ${Math.max(...arrNum)}`);
 
 //4)
 function curr(f){
