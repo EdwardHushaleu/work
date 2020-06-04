@@ -1,17 +1,12 @@
 'use strict'
 
 //1)
-function func(name) {
-
-    if(typeof(name) === 'string'){
-        console.log(`Hello, ${name}`)
-    } else {
-           console.log('Hello, %username%');
-    };
-};
-
 func('Edik');
 func();
+
+function func(name = '%username%'){
+  console.log(`Hello, ${name}`)
+};
 
 //2)
 
@@ -41,11 +36,7 @@ let newObj ={
 
 arr.reduce(function(acc, item){
 
-  if(item.country === 'USA'){
-    acc.usa.push(item.city)
-  } else {
-    acc.europe.push(item.city)
-  }
+  item.country === 'USA' ? acc.usa.push(item.city) : acc.europe.push(item.city);
 
   return acc;
 
@@ -59,30 +50,24 @@ console.log('Минимальное значение: ' + Math.min.apply(null, a
 console.log(`Максимальное значение: ${Math.max(...arrNum)}`);
 
 //4)
-function curr(f){
-    return function(a) {
-        return function(b) {
-            return f(a, b);
-        };
-    };
-}
-
 let funcSum = (a, b) => a + b;
 
-let carreidSum = curr(funcSum);
+let curr = funcSum.bind(null, 5, 6)();
+ console.log(curr)
 
-console.log(carreidSum(2)(3));
+//6)
+let {usa, europe} = newObj;
 
 //7)
 const obj = {
-    fistName: 'Yura',
-    lastName: 'Alekseyev',
-    job: 'web developer',
-    
-    printInfo: function() {
-      console.log(`${this.fistName} ${this.lastName} works as ${this.job}.`)
-    }
-  };
+  fistName: 'Yura',
+  lastName: 'Alekseyev',
+  job: 'web developer',
+  
+  printInfo: function() {
+    console.log(`${this.fistName} ${this.lastName} works as ${this.job}.`)
+  }
+};
 
   obj.printInfo();
   
