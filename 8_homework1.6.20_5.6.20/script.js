@@ -52,8 +52,32 @@ console.log(`Максимальное значение: ${Math.max(...arrNum)}`)
 //4)
 let funcSum = (a, b) => a + b;
 
-let curr = funcSum.bind(null, 5, 6)();
- console.log(curr)
+let curr = funcSum.bind(null, 5);
+ console.log(curr(6));
+
+//5)
+setNum(10).plus(7).minus(2).getResult()
+
+function setNum(arg){
+  
+  let ladder = {
+    plus: function(arg1){
+      arg += arg1;
+      return this;
+    },
+    
+    minus: function(arg2){
+      arg -= arg2;
+       return this;   
+    },
+    
+    getResult: function(arg3){
+      console.log(arg)
+      return this;
+    }
+  }
+  return ladder
+}
 
 //6)
 let {usa, europe} = newObj;
