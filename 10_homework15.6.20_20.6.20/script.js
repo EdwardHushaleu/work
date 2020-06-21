@@ -5,11 +5,12 @@ const errorHendler = (errorE) => {
     errorE.message
     )
 };
-
+let male;
+let female;
 const requestForUsers = function (seccess, error, url){
   const xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&' + url);
+  xhr.open('GET', 'https://randomuser.me/api/?results=3' + url);
   xhr.onreadystatechange = function(){
     if(xhr.readyState === 4){
       if(xhr.status >= 200 && xhr.status < 300) {
@@ -28,28 +29,51 @@ const requestForUsers = function (seccess, error, url){
   xhr.send();
 };
 
+function arrayAll(){
+  if (Array.isArray(male) && Array.isArray(female)){ 
+    const newArr = [...male, ...female]; 
+    ArrEnumeration(newArr);
+    console.log(newArr)
 
+  };
 
+}
 
-requestForUsers(function(male){
-  console.log('male', male.results);
-  let maleArr = male.results;
+function createList(){
+ return document.createElement('ul');
+}
+
+function createListItem({name}){
+  const li = document.createElement('li');
+  li.innerText = `${name.first} ${name.last}`;
+  return li;
   
-  maleArr.forEach(function(item){
-      console.log(item.name.first)
-  });
+ }
+
+ function ArrEnumeration (newArr){
+  const ul = createList();
+
+  for(let i = 0; i < newArr.length; i++){
+    
+    const li = createListItem(newArr[i])
+    ul.appendChild(li);
+    console.log(newArr[i]);
+  }
+
+   
+  document.body.appendChild(ul);
+ }
+
+requestForUsers(function({results}){
+  male = results;
+  arrayAll();
  
 }, errorHendler,
- '=male');
+ '&gender=male');
 
-requestForUsers(function(female){
-  console.log('female',female.results);
-  let femaleArr = female.results;
-
-  femaleArr.forEach(function(item){
-    console.log(item.name.first)
-  })
-  
+requestForUsers(function({results}){
+  female = results;
+  arrayAll();
 }, errorHendler,
-'=female');
+'&gender=female');
 
