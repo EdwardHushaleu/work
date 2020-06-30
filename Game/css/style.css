@@ -14,12 +14,32 @@ body {
 }
 
 .b-shooter__aim{
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 	position: absolute;
 	top: 0;
   	left: 0;
   	transition: transform  0.2s  ease-in-out;
 	transform: translate(360px,200px);
-	pointer-events: none;  
+	pointer-events: none;
+	z-index: 3;  
 }
+
+.b-shooter__img-ghost{
+	width: 120px;
+	height: 120px;
+	pointer-events: none;
+	position: absolute; 
+	transition: opacity;
+	transition-timing-function: ease-in;
+}
+
+.b-shooter__img-fire {
+	visibility: hidden;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transition: opacity;
+	transition-timing-function: ease-in;
+}
+
