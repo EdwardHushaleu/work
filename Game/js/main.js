@@ -7,8 +7,8 @@ var bShooterImgFire = document.querySelector('.b-shooter__img-fire')
 var delayToReset = 500;
 //Анимация в момент поподания
 var animation = `opacity: 0;
-transition-duration: ${delayToReset * 0.6}ms;
-transition-delay: ${delayToReset * 0.4}ms;`;
+                transition-duration: ${delayToReset * 0.6}ms;
+                transition-delay: ${delayToReset * 0.4}ms;`;
 
 bShooter.addEventListener('click', function(e){
      var x = e.offsetX - bShooterAim.offsetWidth / 2;
@@ -28,9 +28,8 @@ bShooter.addEventListener('click', function(e){
         y = limitY;
     };
 
-bShooterAim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    bShooterAim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 });
-
 
 body.addEventListener('keydown', function(e){
     
@@ -41,7 +40,6 @@ body.addEventListener('keydown', function(e){
 });
 
 body.addEventListener('keyup', function(e){
-    
     if(e.keyCode === 13){
         //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
         var coordShooter = bShooterImgAim.getBoundingClientRect();
@@ -61,14 +59,12 @@ body.addEventListener('keyup', function(e){
            && aimCenterY > coordGhost.top - 20
            && aimCenterY < coordGhost.bottom + 20
            ){
-            
-            
             //В момент попадания в цель появляется изображение огня 
             bShooterImgFire.style.visibility ='visible';
             //задаётся длительность анимации, задержка изображение огня и opacity 0
-            bShooterImgFire.style.cssText = bShooterImgFire.style.cssText + animation;
+            bShooterImgFire.style.cssText +=animation;
             //тоже задаётся длительность анимации, задержка и opacity 0
-            ghost.style.cssText = ghost.style.cssText + animation;
+            ghost.style.cssText += animation;
             // скрываем прицел после попадания 
             bShooterImgAim.style.display = 'none';
 
@@ -78,7 +74,7 @@ body.addEventListener('keyup', function(e){
                 ghost.removeAttribute('style');
                 bShooterImgAim.style.display = '';
                 bShooterImgFire.style.visibility = 'hidden';
-            
+                ghost.style.display = 'none';
             },delayToReset)
         }
     }
@@ -101,7 +97,6 @@ function setRandomCoords(){
 
 //реализовываем расписание появления приведения с помощью setInterval в 3 секунды
 setInterval(function(){
-
     //проверка стилевого правила display у картинки .b-shooter__img-ghost
     if(ghost.style.display === 'none'){
         ghost.style.display = '';
