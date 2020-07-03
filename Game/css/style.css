@@ -35,8 +35,8 @@ body {
 	pointer-events: none;
 	position: absolute; 
 	transition: opacity;
-	transition-timing-function: ease-in;
 	animation: ghost-movements 2s linear infinite;
+	z-index: 2;
 }
 
 .b-shooter__img-fire {
@@ -45,7 +45,6 @@ body {
 	left: 0;
 	bottom: 0;
 	transition: opacity;
-	transition-timing-function: ease-in;
 }
 
 .b-shooter__progress{

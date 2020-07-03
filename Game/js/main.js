@@ -67,6 +67,8 @@ body.addEventListener('keyup', function(e){
             ghost.style.cssText += animation;
             // скрываем прицел после попадания 
             bShooterImgAim.style.display = 'none';
+            // при поподании в призрака ставим анимацию перемешения на паузу
+            ghost.style.animationPlayState = 'paused' 
 
             // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
             setTimeout(function(){
@@ -103,10 +105,14 @@ setInterval(function(){
     };
     
     /*что бы призрак при удалении не перемещался по случайным координатам добавляем проверку на наличие
-        свойств анимации у .b-shooter__img-ghost. Если свойство есть, то запуск setRandomCoords происходить не должен.*/
-    if(!ghost.style.animation){
+        свойства paused у .b-shooter__img-ghost. Если свойство есть, то запуск setRandomCoords происходить не должен.*/
+    if(ghost.style.animationPlayState === 'paused'){
+        return;
+    } else {
         //безусловный вызов setRandomCoords
         setRandomCoords();
     }
-}, 3000);
+
+    
+}, 2000);
 
