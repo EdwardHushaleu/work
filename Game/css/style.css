@@ -35,7 +35,7 @@ body {
 	pointer-events: none;
 	position: absolute; 
 	transition: opacity;
-	animation: ghost-movements 2s linear infinite;
+	animation: ghost-movements 2s infinite;
 	z-index: 2;
 }
 
@@ -109,7 +109,7 @@ body {
 	}
 
 	80%{
-		transform: scale(.9 1.1) translateY(-30px);
+		transform: scale(.9, 1.1) translateY(-30px);
 	}
 
 	100%{

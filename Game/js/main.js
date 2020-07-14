@@ -16,6 +16,10 @@ bShooter.addEventListener('click', function(e){
      var limitX = bShooter.offsetWidth - bShooterAim.offsetWidth;
      var limitY = bShooter.offsetHeight - bShooterAim.offsetHeight;
 
+     if(ghost.style.animationPlayState === 'paused'){
+         return;
+     }
+
     if(x < 0){
         x = 0
     } else if(x > limitX){
@@ -40,7 +44,9 @@ body.addEventListener('keydown', function(e){
 });
 
 body.addEventListener('keyup', function(e){
-    if(e.keyCode === 13){
+    if(e.keyCode !== 13){
+        return;    
+    } else {
         //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
         var coordShooter = bShooterImgAim.getBoundingClientRect();
 
@@ -79,8 +85,7 @@ body.addEventListener('keyup', function(e){
                 ghost.style.display = 'none';
             },delayToReset)
         }
-    }
-    
+    }    
 });
 
 function setRandomCoords(){
@@ -114,5 +119,5 @@ setInterval(function(){
     }
 
     
-}, 2000);
+}, 3000);
 
