@@ -3,8 +3,12 @@ var bShooter = document.querySelector('.b-shooter');
 var bShooterAim = document.querySelector('.b-shooter__aim');
 var bShooterImgAim = document.querySelector('.b-shooter__img-aim');
 var ghost = document.querySelector('.b-shooter__img-ghost');
-var bShooterImgFire = document.querySelector('.b-shooter__img-fire')
+var bShooterImgFire = document.querySelector('.b-shooter__img-fire');
 var delayToReset = 500;
+var progressIcon = document.getElementsByClassName('b-shooter__progress-icon');
+var isGameOver = false;
+var healthIcon = document.querySelectorAll('.b-shooter__health-icon');
+var bShooterHealth = document.querySelector('.b-shooter__health');
 //Анимация в момент поподания
 var animation = `opacity: 0;
                 transition-duration: ${delayToReset * 0.6}ms;
@@ -16,7 +20,7 @@ bShooter.addEventListener('click', function(e){
      var limitX = bShooter.offsetWidth - bShooterAim.offsetWidth;
      var limitY = bShooter.offsetHeight - bShooterAim.offsetHeight;
 
-     if(ghost.style.animationPlayState === 'paused'){
+     if(ghost.style.animationPlayState === 'paused' || isGameOver){
          return;
      }
 
@@ -74,16 +78,22 @@ body.addEventListener('keyup', function(e){
             // скрываем прицел после попадания 
             bShooterImgAim.style.display = 'none';
             // при поподании в призрака ставим анимацию перемешения на паузу
-            ghost.style.animationPlayState = 'paused' 
+            ghost.style.animationPlayState = 'paused';
+            //Функция markProgress будет добавлять класс-модификатор на один из элементов массива.
+            markProgress(); 
 
             // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
             setTimeout(function(){
-                bShooterImgFire.removeAttribute('style');
-                ghost.removeAttribute('style');
-                bShooterImgAim.style.display = '';
-                bShooterImgFire.style.visibility = 'hidden';
-                ghost.style.display = 'none';
+                if(!isGameOver){
+                    bShooterImgFire.removeAttribute('style');
+                    ghost.removeAttribute('style');
+                    bShooterImgAim.style.display = '';
+                    bShooterImgFire.style.visibility = 'hidden';
+                    ghost.style.display = 'none';
+                }
             },delayToReset)
+
+        
         }
     }    
 });
@@ -100,24 +110,78 @@ function setRandomCoords(){
     //полученные координаты задаем как top и left для .b-shooter__img-ghost
     ghost.style.top = y + 'px';
     ghost.style.left = x + 'px';
+    
 }
 
 //реализовываем расписание появления приведения с помощью setInterval в 3 секунды
 setInterval(function(){
     //проверка стилевого правила display у картинки .b-shooter__img-ghost
-    if(ghost.style.display === 'none'){
+    // if(ghost.style.display === 'none'){
+    //     ghost.style.display = '';
+    // };
+    
+    // /*что бы призрак при удалении не перемещался по случайным координатам добавляем проверку на наличие
+    //     свойства paused у .b-shooter__img-ghost. Если свойство есть, то запуск setRandomCoords происходить не должен.*/
+    // if(ghost.style.animationPlayState === 'paused' || isGameOver){
+        
+    //     return;
+    // } else {
+    //     //безусловный вызов setRandomCoords
+    //     setRandomCoords();
+    //     markLifeStatus();
+    // };
+
+    if (ghost.style.animationPlayState === 'paused' || isGameOver) {
+        return;
+    };
+
+    if (ghost.style.display === 'none') {
         ghost.style.display = '';
+        setRandomCoords();
+    } else {
+        setRandomCoords();
+        markLifeStatus(); 
     };
     
-    /*что бы призрак при удалении не перемещался по случайным координатам добавляем проверку на наличие
-        свойства paused у .b-shooter__img-ghost. Если свойство есть, то запуск setRandomCoords происходить не должен.*/
-    if(ghost.style.animationPlayState === 'paused'){
-        return;
-    } else {
-        //безусловный вызов setRandomCoords
-        setRandomCoords();
-    }
-
-    
 }, 3000);
+
+var markLifeStatus = () => {
+    
+    if (bShooterHealth.classList.contains('_blinkHealthBar')) {
+        isGameOver = true;
+        return;
+    };
+
+    for (var i = 0; i < healthIcon.length; i++) {
+        console.log(healthIcon);
+        if (!healthIcon[i].classList.contains('_minusHealth')) {
+            healthIcon[i].classList.add('_minusHealth');
+
+            if (i === healthIcon.length - 1) {
+                bShooterHealth.classList.add('_blinkHealthBar');
+            };
+
+            break;
+        };
+    };
+    console.log('after',healthIcon);
+}
+
+// markProgress, функция которая будет фиксировать факт попадания по призраку на прогрессбаре путём перебора найденных .b-shooter__progress-icon и добавления класса, изменяющего внешний вид иконки.
+var markProgress = () => {
+    for(var i = 0; i < progressIcon.length; i++ ){
+        if(!progressIcon[i].classList.contains('_shootToGhost')){
+            progressIcon[i].classList.add('_shootToGhost');
+
+            //Когда класс модификатор будет повешен на последнюю иконку, необходимо перевести эту переменную в значение true.
+            if(i === progressIcon.length - 1){
+                isGameOver = true;
+                console.log(isGameOver)
+            };
+
+            break;
+        }
+    }
+}
+
 

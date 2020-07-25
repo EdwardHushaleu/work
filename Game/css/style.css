@@ -69,6 +69,11 @@ body {
 	width: 30px;
 }
 
+._shootToGhost{
+	opacity: .2;
+	transform: rotate(180deg);
+}
+
 .b-shooter__healt-icon{
 	width: 35px;
 	fill: #f44336;
@@ -89,6 +94,21 @@ body {
 
 .b-shooter__healt-icon:nth-child(n+2){
 	margin-left: 15px;
+}
+
+._blinkHealthBar {
+	animation: blink 2s linear infinite;
+}
+
+.b-shooter__health-icon {
+	width: 34px;
+	fill:  #f44336;
+	transition: transform .3s ease-out, fill .2s ease-out;
+}
+
+._minusHealth {
+	transform: scale(.85);
+	fill:  rgba(90, 87, 98, .7);
 }
 
 @keyframes ghost-movements {
@@ -117,3 +137,16 @@ body {
 	}
 }
 
+@keyframes blink {
+	0%, 100% {
+		opacity: 1;
+	}
+
+	10%, 30%, 50%, 70%, 90% {
+		opacity: .7;
+	}
+	
+	20%, 40%, 60%, 80% {
+		opacity: .5;
+	}
+}
