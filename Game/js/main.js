@@ -9,6 +9,8 @@ var progressIcon = document.getElementsByClassName('b-shooter__progress-icon');
 var isGameOver = false;
 var healthIcon = document.querySelectorAll('.b-shooter__health-icon');
 var bShooterHealth = document.querySelector('.b-shooter__health');
+var bShooterTitle = document.querySelector('.b-shooter__game-over-title');
+var bShooterGameOver = document.querySelector('.b-shooter__game-over');
 //Анимация в момент поподания
 var animation = `opacity: 0;
                 transition-duration: ${delayToReset * 0.6}ms;
@@ -39,18 +41,29 @@ bShooter.addEventListener('click', function(e){
     bShooterAim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 });
 
-body.addEventListener('keydown', function(e){
-    
-    if(e.keyCode === 13){
+document.body.addEventListener('keydown', function(e){
+    e.preventDefault();
+
+    if(e.keyCode === 32){
         bShooterImgAim.style.transform ='scale(.9)';
     }
     
 });
 
-body.addEventListener('keyup', function(e){
-    if(e.keyCode !== 13){
-        return;    
-    } else {
+document.body.addEventListener('keyup', function(e){
+    e.preventDefault();
+
+    if((e.keyCode === 13) && isGameOver){
+        reset();    
+    };
+
+    if (e.keyCode !== 32) {
+        return;
+    }else{
+        if (isGameOver) {
+            return;
+        };
+
         //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
         var coordShooter = bShooterImgAim.getBoundingClientRect();
 
@@ -84,7 +97,9 @@ body.addEventListener('keyup', function(e){
 
             // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
             setTimeout(function(){
-                if(!isGameOver){
+                if(isGameOver){
+                    dropTheCurtain(true);
+                }else{
                     bShooterImgFire.removeAttribute('style');
                     ghost.removeAttribute('style');
                     bShooterImgAim.style.display = '';
@@ -115,21 +130,6 @@ function setRandomCoords(){
 
 //реализовываем расписание появления приведения с помощью setInterval в 3 секунды
 setInterval(function(){
-    //проверка стилевого правила display у картинки .b-shooter__img-ghost
-    // if(ghost.style.display === 'none'){
-    //     ghost.style.display = '';
-    // };
-    
-    // /*что бы призрак при удалении не перемещался по случайным координатам добавляем проверку на наличие
-    //     свойства paused у .b-shooter__img-ghost. Если свойство есть, то запуск setRandomCoords происходить не должен.*/
-    // if(ghost.style.animationPlayState === 'paused' || isGameOver){
-        
-    //     return;
-    // } else {
-    //     //безусловный вызов setRandomCoords
-    //     setRandomCoords();
-    //     markLifeStatus();
-    // };
 
     if (ghost.style.animationPlayState === 'paused' || isGameOver) {
         return;
@@ -149,6 +149,7 @@ var markLifeStatus = () => {
     
     if (bShooterHealth.classList.contains('_blinkHealthBar')) {
         isGameOver = true;
+        dropTheCurtain(false)
         return;
     };
 
@@ -165,7 +166,7 @@ var markLifeStatus = () => {
         };
     };
     console.log('after',healthIcon);
-}
+};
 
 // markProgress, функция которая будет фиксировать факт попадания по призраку на прогрессбаре путём перебора найденных .b-shooter__progress-icon и добавления класса, изменяющего внешний вид иконки.
 var markProgress = () => {
@@ -180,8 +181,45 @@ var markProgress = () => {
             };
 
             break;
-        }
-    }
+        };
+    };
+};
+
+var dropTheCurtain = (isWin) => {
+    if (isWin) {
+        bShooterTitle.innerText = 'YOU WIN';
+        bShooter.classList.add('_win')
+    };
+
+    if (!isWin) {
+        bShooterTitle.innerText = 'YOU LOSE';
+        bShooter.classList.add('_lose');
+        ghost.removeAttribute('style'); 
+    };
+};
+
+var reset = () => {
+    isGameOver = false;
+    bShooterHealth.classList.remove('_blinkHealthBar');
+    bShooter.classList.remove('_lose');
+    bShooter.classList.remove('_win');
+    bShooterImgAim.removeAttribute('style');
+    bShooterImgFire.removeAttribute('style');
+    bShooterImgFire.style.visibility = 'hidden';
+    ghost.removeAttribute('style');
+    ghost.style.display = 'none';
+
+    for (var i = 0; i < progressIcon.length; i++) {
+        if (progressIcon[i].classList.contains('_shootToGhost')) {
+            progressIcon[i].classList.remove('_shootToGhost');
+        };
+    };
+
+    for (var i = 0; i < healthIcon.length; i++) {
+        if (healthIcon[i].classList.contains('_minusHealth')) {
+            healthIcon[i].classList.remove('_minusHealth');
+        };
+    };
 }
 
 
