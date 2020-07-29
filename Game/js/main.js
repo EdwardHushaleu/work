@@ -1,30 +1,30 @@
-var body = document.body
-var bShooter = document.querySelector('.b-shooter');
-var bShooterAim = document.querySelector('.b-shooter__aim');
-var bShooterImgAim = document.querySelector('.b-shooter__img-aim');
-var ghost = document.querySelector('.b-shooter__img-ghost');
-var bShooterImgFire = document.querySelector('.b-shooter__img-fire');
-var delayToReset = 500;
-var progressIcon = document.getElementsByClassName('b-shooter__progress-icon');
-var isGameOver = false;
-var healthIcon = document.querySelectorAll('.b-shooter__health-icon');
-var bShooterHealth = document.querySelector('.b-shooter__health');
-var bShooterTitle = document.querySelector('.b-shooter__game-over-title');
-var bShooterGameOver = document.querySelector('.b-shooter__game-over');
+const body = document.body
+const bShooter = document.querySelector('.b-shooter');
+const bShooterAim = document.querySelector('.b-shooter__aim');
+const bShooterImgAim = document.querySelector('.b-shooter__img-aim');
+const ghost = document.querySelector('.b-shooter__img-ghost');
+const bShooterImgFire = document.querySelector('.b-shooter__img-fire');
+const delayToReset = 500;
+const progressIcon = document.getElementsByClassName('b-shooter__progress-icon');
+let isGameOver = false;
+const healthIcon = document.querySelectorAll('.b-shooter__health-icon');
+const bShooterHealth = document.querySelector('.b-shooter__health');
+const bShooterTitle = document.querySelector('.b-shooter__game-over-title');
+const bShooterGameOver = document.querySelector('.b-shooter__game-over');
 //Анимация в момент поподания
-var animation = `opacity: 0;
+const animation = `opacity: 0;
                 transition-duration: ${delayToReset * 0.6}ms;
                 transition-delay: ${delayToReset * 0.4}ms;`;
 
-bShooter.addEventListener('click', function(e){
-     var x = e.offsetX - bShooterAim.offsetWidth / 2;
-     var y = e.offsetY - bShooterAim.offsetHeight / 2;
-     var limitX = bShooter.offsetWidth - bShooterAim.offsetWidth;
-     var limitY = bShooter.offsetHeight - bShooterAim.offsetHeight;
+bShooter.addEventListener('click', (e) => {
+    if(ghost.style.animationPlayState === 'paused' || isGameOver){
+        return;
+    }
 
-     if(ghost.style.animationPlayState === 'paused' || isGameOver){
-         return;
-     }
+    const x = e.offsetX - bShooterAim.offsetWidth / 2;
+    const y = e.offsetY - bShooterAim.offsetHeight / 2;
+    const limitX = bShooter.offsetWidth - bShooterAim.offsetWidth;
+    const limitY = bShooter.offsetHeight - bShooterAim.offsetHeight;
 
     if(x < 0){
         x = 0
@@ -41,38 +41,35 @@ bShooter.addEventListener('click', function(e){
     bShooterAim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 });
 
-document.body.addEventListener('keydown', function(e){
-    e.preventDefault();
+document.body.addEventListener('keydown', (e) => {
 
     if(e.keyCode === 32){
+        e.preventDefault();
         bShooterImgAim.style.transform ='scale(.9)';
     }
     
 });
 
-document.body.addEventListener('keyup', function(e){
-    e.preventDefault();
+document.body.addEventListener('keyup', (e) => {
 
     if((e.keyCode === 13) && isGameOver){
-        reset();    
-    };
+      return reset();    
+    }
 
-    if (e.keyCode !== 32) {
+   else if (e.keyCode !== 32 || isGameOver) {
         return;
-    }else{
-        if (isGameOver) {
-            return;
-        };
+    }
+
 
         //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
-        var coordShooter = bShooterImgAim.getBoundingClientRect();
+        const coordShooter = bShooterImgAim.getBoundingClientRect();
 
         //вычислем полученые координаты, aimCenterX и aimCenterY, которые будут являться центром изображения прицела.
-        var aimCenterX = coordShooter.x + coordShooter.width / 2;
-        var aimCenterY = coordShooter.y + coordShooter.height / 2;
+        const aimCenterX = coordShooter.x + coordShooter.width / 2;
+        const aimCenterY = coordShooter.y + coordShooter.height / 2;
         
         // с помощю метода getBoundingClientRect() берем значения left, top, right и bottom для Hitbox .
-        var coordGhost = ghost.getBoundingClientRect();
+        const coordGhost = ghost.getBoundingClientRect();
 
         bShooterImgAim.style.transform = '';  
 
@@ -96,7 +93,7 @@ document.body.addEventListener('keyup', function(e){
             markProgress(); 
 
             // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
-            setTimeout(function(){
+            setTimeout(() => {
                 if(isGameOver){
                     dropTheCurtain(true);
                 }else{
@@ -110,17 +107,17 @@ document.body.addEventListener('keyup', function(e){
 
         
         }
-    }    
+        
 });
 
 function setRandomCoords(){
     //оперируем размерами игровой области и размерами картинки с приведением                                                 
-    var limitX = bShooter.offsetWidth - ghost.offsetWidth;
-    var limitY = bShooter.offsetHeight - ghost.offsetHeight;
+    const limitX = bShooter.offsetWidth - ghost.offsetWidth;
+    const limitY = bShooter.offsetHeight - ghost.offsetHeight;
 
     //генерируем случайную пару x, y допустимых координат
-    var x = Math.floor(Math.random() * (limitX + 1));
-    var y = Math.floor(Math.random() * (limitY + 1));
+    const x = Math.floor(Math.random() * (limitX + 1));
+    const y = Math.floor(Math.random() * (limitY + 1));
 
     //полученные координаты задаем как top и left для .b-shooter__img-ghost
     ghost.style.top = y + 'px';
@@ -129,7 +126,7 @@ function setRandomCoords(){
 }
 
 //реализовываем расписание появления приведения с помощью setInterval в 3 секунды
-setInterval(function(){
+setInterval(() => {
 
     if (ghost.style.animationPlayState === 'paused' || isGameOver) {
         return;
@@ -145,7 +142,7 @@ setInterval(function(){
     
 }, 3000);
 
-var markLifeStatus = () => {
+const markLifeStatus = () => {
     
     if (bShooterHealth.classList.contains('_blinkHealthBar')) {
         isGameOver = true;
@@ -153,8 +150,7 @@ var markLifeStatus = () => {
         return;
     };
 
-    for (var i = 0; i < healthIcon.length; i++) {
-        console.log(healthIcon);
+    for (let i = 0; i < healthIcon.length; i++) {
         if (!healthIcon[i].classList.contains('_minusHealth')) {
             healthIcon[i].classList.add('_minusHealth');
 
@@ -165,19 +161,17 @@ var markLifeStatus = () => {
             break;
         };
     };
-    console.log('after',healthIcon);
 };
 
 // markProgress, функция которая будет фиксировать факт попадания по призраку на прогрессбаре путём перебора найденных .b-shooter__progress-icon и добавления класса, изменяющего внешний вид иконки.
-var markProgress = () => {
-    for(var i = 0; i < progressIcon.length; i++ ){
+const markProgress = () => {
+    for(let i = 0; i < progressIcon.length; i++ ){
         if(!progressIcon[i].classList.contains('_shootToGhost')){
             progressIcon[i].classList.add('_shootToGhost');
 
             //Когда класс модификатор будет повешен на последнюю иконку, необходимо перевести эту переменную в значение true.
             if(i === progressIcon.length - 1){
                 isGameOver = true;
-                console.log(isGameOver)
             };
 
             break;
@@ -185,7 +179,7 @@ var markProgress = () => {
     };
 };
 
-var dropTheCurtain = (isWin) => {
+const dropTheCurtain = (isWin) => {
     if (isWin) {
         bShooterTitle.innerText = 'YOU WIN';
         bShooter.classList.add('_win')
@@ -198,7 +192,7 @@ var dropTheCurtain = (isWin) => {
     };
 };
 
-var reset = () => {
+const reset = () => {
     isGameOver = false;
     bShooterHealth.classList.remove('_blinkHealthBar');
     bShooter.classList.remove('_lose');
@@ -209,13 +203,13 @@ var reset = () => {
     ghost.removeAttribute('style');
     ghost.style.display = 'none';
 
-    for (var i = 0; i < progressIcon.length; i++) {
+    for (let i = 0; i < progressIcon.length; i++) {
         if (progressIcon[i].classList.contains('_shootToGhost')) {
             progressIcon[i].classList.remove('_shootToGhost');
         };
     };
 
-    for (var i = 0; i < healthIcon.length; i++) {
+    for (let i = 0; i < healthIcon.length; i++) {
         if (healthIcon[i].classList.contains('_minusHealth')) {
             healthIcon[i].classList.remove('_minusHealth');
         };

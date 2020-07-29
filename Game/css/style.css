@@ -85,7 +85,7 @@ body {
 	transition: transform .3s ease-out;
 }
 
-._shootToGhost{
+.b-shooter__progress-icon._shootToGhost{
 	opacity: .2;
 	transform: rotate(180deg);
 }
@@ -108,11 +108,11 @@ body {
 	
 }
 
-.b-shooter__healt-icon:nth-child(n+2){
+.b-shooter__health-icon:nth-child(n+2) {
 	margin-left: 15px;
 }
 
-._blinkHealthBar {
+.b-shooter__health._blinkHealthBar {
 	animation: blink 2s linear infinite;
 }
 
@@ -158,11 +158,15 @@ body {
 ._win .b-shooter__game-over {
 	background-color: rgba(255, 255, 255, .9);
 	color: black;
+	display: flex;
+    flex-direction: column;
 }
 
 ._lose .b-shooter__game-over {
 	background-color: rgba(0, 0,0, .9);
-	color: red;
+	color: #fff;
+	display: flex;
+    flex-direction: column;
 }
 
 .b-shooter__game-over h2 {
@@ -171,8 +175,8 @@ body {
 }
 
 .b-shooter__game-over p {
-	margin-top: 10px;
-	font-size: 40px;
+	margin-top: 30px;
+    font-size: 25px;
 }
 
 @keyframes ghost-movements {
