@@ -112,7 +112,7 @@ body {
 	margin-left: 15px;
 }
 
-.b-shooter__health._blinkHealthBar {
+.b-shooter__health._blink-health-bar {
 	animation: blink 2s linear infinite;
 }
 
@@ -122,7 +122,7 @@ body {
 	transition: transform .3s ease-out, fill .2s ease-out;
 }
 
-.b-shooter__health-icon._minusHealth {
+.b-shooter__health-icon._minus-health {
 	transform: scale(.85);
 	fill:  rgba(90, 87, 98, .7);
 }

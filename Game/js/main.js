@@ -1,3 +1,5 @@
+'use strict'
+
 const body = document.body
 const bShooter = document.querySelector('.b-shooter');
 const bShooterAim = document.querySelector('.b-shooter__aim');
@@ -52,7 +54,7 @@ document.body.addEventListener('keydown', (e) => {
 
 document.body.addEventListener('keyup', (e) => {
 
-    if((e.keyCode === 13) && isGameOver){
+    if(e.keyCode === 13 && isGameOver){
       return reset();    
     }
 
@@ -61,53 +63,51 @@ document.body.addEventListener('keyup', (e) => {
     }
 
 
-        //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
-        const coordShooter = bShooterImgAim.getBoundingClientRect();
+    //находим координаты методом getBoundingClientRect() у элемента bShooterImgAim
+    const coordShooter = bShooterImgAim.getBoundingClientRect();
 
-        //вычислем полученые координаты, aimCenterX и aimCenterY, которые будут являться центром изображения прицела.
-        const aimCenterX = coordShooter.x + coordShooter.width / 2;
-        const aimCenterY = coordShooter.y + coordShooter.height / 2;
+    //вычислем полученые координаты, aimCenterX и aimCenterY, которые будут являться центром изображения прицела.
+    const aimCenterX = coordShooter.x + coordShooter.width / 2;
+    const aimCenterY = coordShooter.y + coordShooter.height / 2;
         
-        // с помощю метода getBoundingClientRect() берем значения left, top, right и bottom для Hitbox .
-        const coordGhost = ghost.getBoundingClientRect();
+    // с помощю метода getBoundingClientRect() берем значения left, top, right и bottom для Hitbox .
+    const coordGhost = ghost.getBoundingClientRect();
 
-        bShooterImgAim.style.transform = '';  
+    bShooterImgAim.style.transform = '';  
 
-        //проверка, попадают ли координаты геометрического центра прицела в наш хитбокс
-        if(aimCenterX < coordGhost.right - 20
-           && aimCenterX > coordGhost.left + 20
-           && aimCenterY > coordGhost.top - 20
-           && aimCenterY < coordGhost.bottom + 20
-           ){
-            //В момент попадания в цель появляется изображение огня 
-            bShooterImgFire.style.visibility ='visible';
-            //задаётся длительность анимации, задержка изображение огня и opacity 0
-            bShooterImgFire.style.cssText +=animation;
-            //тоже задаётся длительность анимации, задержка и opacity 0
-            ghost.style.cssText += animation;
-            // скрываем прицел после попадания 
-            bShooterImgAim.style.display = 'none';
-            // при поподании в призрака ставим анимацию перемешения на паузу
-            ghost.style.animationPlayState = 'paused';
-            //Функция markProgress будет добавлять класс-модификатор на один из элементов массива.
-            markProgress(); 
+    //проверка, попадают ли координаты геометрического центра прицела в наш хитбокс
+    if(aimCenterX < coordGhost.right - 20
+       && aimCenterX > coordGhost.left + 20
+       && aimCenterY > coordGhost.top - 20
+       && aimCenterY < coordGhost.bottom + 20
+    ){
+     //В момент попадания в цель появляется изображение огня 
+     bShooterImgFire.style.visibility ='visible';
+     //задаётся длительность анимации, задержка изображение огня и opacity 0
+     bShooterImgFire.style.cssText +=animation;
+     //тоже задаётся длительность анимации, задержка и opacity 0
+     ghost.style.cssText += animation;
+     // скрываем прицел после попадания 
+     bShooterImgAim.style.display = 'none';
+     // при поподании в призрака ставим анимацию перемешения на паузу
+     ghost.style.animationPlayState = 'paused';
+     //Функция markProgress будет добавлять класс-модификатор на один из элементов массива.
+     markProgress(); 
 
-            // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
-            setTimeout(() => {
-                if(isGameOver){
-                    dropTheCurtain(true);
-                }else{
-                    bShooterImgFire.removeAttribute('style');
-                    ghost.removeAttribute('style');
-                    bShooterImgAim.style.display = '';
-                    bShooterImgFire.style.visibility = 'hidden';
-                    ghost.style.display = 'none';
-                }
-            },delayToReset)
-
-        
+    // после запуска анимации Удаляем все стили после регистрации setTimeout время отложенного запуска которого будет равняться delayToReset 
+    setTimeout(() => {
+        if(isGameOver){
+            dropTheCurtain(true);
+        }else{
+            bShooterImgFire.removeAttribute('style');
+            ghost.removeAttribute('style');
+            bShooterImgAim.style.display = '';
+            bShooterImgFire.style.visibility = 'hidden';
+            ghost.style.display = 'none';
         }
-        
+    },delayToReset)
+    
+    }       
 });
 
 function setRandomCoords(){
@@ -144,18 +144,18 @@ setInterval(() => {
 
 const markLifeStatus = () => {
     
-    if (bShooterHealth.classList.contains('_blinkHealthBar')) {
+    if (bShooterHealth.classList.contains('_blink-health-bar')) {
         isGameOver = true;
         dropTheCurtain(false)
         return;
     };
 
     for (let i = 0; i < healthIcon.length; i++) {
-        if (!healthIcon[i].classList.contains('_minusHealth')) {
-            healthIcon[i].classList.add('_minusHealth');
+        if (!healthIcon[i].classList.contains('_minus-health')) {
+            healthIcon[i].classList.add('_minus-health');
 
             if (i === healthIcon.length - 1) {
-                bShooterHealth.classList.add('_blinkHealthBar');
+                bShooterHealth.classList.add('_blink-health-bar');
             };
 
             break;
@@ -194,7 +194,7 @@ const dropTheCurtain = (isWin) => {
 
 const reset = () => {
     isGameOver = false;
-    bShooterHealth.classList.remove('_blinkHealthBar');
+    bShooterHealth.classList.remove('_blink-health-bar');
     bShooter.classList.remove('_lose');
     bShooter.classList.remove('_win');
     bShooterImgAim.removeAttribute('style');
@@ -210,8 +210,8 @@ const reset = () => {
     };
 
     for (let i = 0; i < healthIcon.length; i++) {
-        if (healthIcon[i].classList.contains('_minusHealth')) {
-            healthIcon[i].classList.remove('_minusHealth');
+        if (healthIcon[i].classList.contains('_minus-health')) {
+            healthIcon[i].classList.remove('_minus-health');
         };
     };
 }
